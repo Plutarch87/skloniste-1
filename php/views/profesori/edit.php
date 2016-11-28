@@ -39,10 +39,11 @@ $user = $query->show('profesori',$id);
 		    	<input type="hidden" name="id" value="<?= $_GET['id']; ?>">
 			<div class="form-group"> 
 				<div class="col-sm-offset-2 col-sm-10">
-			      		<button type="submit" class="btn btn-warning">Unesi</button>
-			    	</div>
+		      		<button type="submit" class="btn btn-warning">Unesi</button>
+		    	</div>
 			</div>
 			</form>
+			<a href="index.php" class="btn btn-default">Nazad</a>
 		</div>		
 	</div>
 </section>

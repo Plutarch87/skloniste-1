@@ -16,6 +16,7 @@ $user = $query->show('profesori', $id);
 			</ul>
 			<p>					
 				<a href="edit.php?id=<?= $_POST['id'] = $id; ?>" class="btn btn-info">Izmeni</a>
+				<a href="index" class="btn btn-default">Nazad</a>
 				&nbsp;
 				<form method="POST" action="delete.php?id=<?= $_POST['id'] = $id; ?>">
 					<input type="hidden" method="DELETE">
@@ -24,5 +25,6 @@ $user = $query->show('profesori', $id);
 			</p>
 		</div>
 	</div>
+
 </section>
 <?php require '../admin.footer.php'; ?>

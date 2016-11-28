@@ -41,9 +41,10 @@ require 'prof.header.php';
 			<div class="form-group"> 
 				<div class="col-sm-offset-2 col-sm-10">
 			      	<button type="submit" name="submit" class="btn btn-warning">Unesi</button>
-			    	</div>
+		    	</div>
 			</div>
 			</form>
+			<a href="index.php" class="btn btn-default">Nazad</a>
 		</div>		
 	</div>
 </section>

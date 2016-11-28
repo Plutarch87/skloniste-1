@@ -21,7 +21,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="../admin.index.php">Administratori</a></li> 
 					<li><a href="index.php">Profesori</a></li>
-					<li><a href="../galerija/index.php">Galerija</a></li>
+					<!-- <li><a href="../galerija/index.php">Galerija</a></li> -->
 				</ul>
 				<ul class="nav navbar-nav navbar-right">					
 					<li class="dropdown">

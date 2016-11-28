@@ -24,7 +24,7 @@ isset($_SESSION['email']) ?: require '../app/bootstrap.php';
 				<ul class="nav navbar-nav">
 					<li><a href="#">Administratori</a></li> 
 					<li><a href="profesori/index.php">Profesori</a></li>
-			  		<li><a href="galerija/">Galerija</a></li>
+			  		<!-- <li><a href="galerija/">Galerija</a></li> -->
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">					

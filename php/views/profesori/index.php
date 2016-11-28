@@ -19,6 +19,7 @@
 		</div>
 		<div class="row">
 			<a href="create.php" class="btn btn-info">Napravi Novi Unos</a>
+			<a href="../admin.index.php" class="btn btn-info">Nazad</a>
 		</div>
 	</div>
 </section>
