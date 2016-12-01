@@ -22,7 +22,7 @@ if($_FILES['img']['error'][0] == 0):
 		$ph = $_FILES['img']['name'][$i];
 		$photo = new Photograph();
 		$photo->attach_file($_FILES['img'], $i);
-		$photo->filename = $user[0]['name'].".".strtolower(pathinfo($ph, PATHINFO_EXTENSION));
+		$photo->filename = date('his').".".strtolower(pathinfo($ph, PATHINFO_EXTENSION));
 		$photo->galleryId = "";
 		$photo->save();
 

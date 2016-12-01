@@ -32,7 +32,6 @@ class QueryBuilder
 		$surname = $db->escapeString(utf8_encode($surname));
 		$instrument = $db->escapeString(utf8_encode($instrument));
 		$bio = $db->escapeString(utf8_encode($bio));
-		$img = $db->escapeString($img);
 
 		$query = "INSERT INTO ".$table." (name, surname, instrument, bio, img) VALUES ('$name', '$surname', '$instrument', '$bio', '$img')";
 
@@ -212,6 +211,8 @@ class QueryBuilder
 		while($result = $stmt->fetchArray(SQLITE3_ASSOC)):
 			$r[] = $result;
 		endwhile;
+
+		$db->close();
 		
 		return isset($r) ? $r : null;
 			
@@ -235,7 +236,7 @@ class QueryBuilder
 		}
 		else
 		{
-			throw new Exception("QueryBuilder", 1);			
+			die('Doslo je do neocekivane greske.');			
 		}
 	}
 

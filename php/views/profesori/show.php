@@ -6,13 +6,13 @@ $user = $query->show('profesori', $id);
 ?>
 <section class="main">
 	<div class="container">
-		<h1 style="font-family: Impact"><?= $user[0]['name']. ' ' .$user[0]['surname']; ?></h1>
+		<h1 style="font-family: Impact"><?= utf8_decode($user[0]['name']). ' ' .utf8_decode($user[0]['surname']); ?></h1>
 		<hr>		
 		<div class="row">
 			<ul>
-				<img width="250" height="250" src="../assets/images/<?= $user[0]['img']; ?>" alt="<?= $user[0]['name']; ?>1">
-				<li>Instrument: <?= $user[0]['instrument']; ?></li>
-				<li>Biografija: <?= $user[0]['bio']; ?></li>
+				<img width="250" height="250" src="../assets/images/<?= $user[0]['img']; ?>" alt="<?= utf8_decode($user[0]['name']); ?>1">
+				<li>Instrument: <?= utf8_decode($user[0]['instrument']); ?></li>
+				<li>Biografija: <?= utf8_decode($user[0]['bio']); ?></li>
 			</ul>
 			<p>					
 				<a href="edit.php?id=<?= $_POST['id'] = $id; ?>" class="btn btn-info">Izmeni</a>

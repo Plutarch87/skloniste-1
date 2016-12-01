@@ -10,8 +10,8 @@ if(isset($_POST['submit'])):
 			$ph = $_FILES['img']['name'][$i];
 			$photo = new Photograph();
 			$photo->attach_file($_FILES['img'], $i);
-			$photo->filename = $name.".".pathinfo($ph, PATHINFO_EXTENSION);
-			$photo->galleryId = $galleryId;
+			$photo->filename = date('his').".".pathinfo($ph, PATHINFO_EXTENSION);
+			$photo->galleryId = "";
 			$photo->save();
 			
 	endfor;

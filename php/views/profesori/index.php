@@ -12,7 +12,7 @@
 			<?php if (!isset($profesori)): ?>
 			<?php else: ?>
 			<?php foreach ($profesori as $p): ?>
-				<a href="show.php?id=<?= $_POST['id'] = $p['id']; ?>" class="list-group-item"><?= $p['name']. ' ' . $p['surname']; ?></a>
+				<a href="show.php?id=<?= $_POST['id'] = $p['id']; ?>" class="list-group-item"><?= utf8_decode($p['name']). ' ' . utf8_decode($p['surname']); ?></a>
 			<?php endforeach; ?>
 			<?php endif; ?>
 			</div>
