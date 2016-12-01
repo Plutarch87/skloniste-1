@@ -18,14 +18,16 @@ class QueryBuilder
 		while($result = $stmt->fetchArray(SQLITE3_ASSOC)):
 			$r[] = $result;
 		endwhile;
-		if(isset($r)){
-			return $r;
-		}
+
+		$db->close();
+		
+		return isset($r) ? $r : null;		
 	}
 
 	public function storeProf($table, $name, $surname, $instrument, $bio, $img)
 	{
 		$db = new SQLite3('../../../skloniste.db');
+
 		$name = $db->escapeString(utf8_encode($name));
 		$surname = $db->escapeString(utf8_encode($surname));
 		$instrument = $db->escapeString(utf8_encode($instrument));
@@ -39,12 +41,14 @@ class QueryBuilder
 			$stmt = $db->prepare('SELECT name, surname, instrument, bio, img FROM '.$table.' WHERE id=:id');	
 			
 			$result = $stmt->execute();
+
+			$db->close();
 			
 			return $result;
 		}
 		else
 		{
-			throw new Exception("QueryBuilder", 1);			
+			die('Doslo je do neocekivane greske');
 		}
 	}
 
@@ -58,6 +62,8 @@ class QueryBuilder
 			$r[] = $result;
 		endwhile;
 
+		$db->close();
+
 		return isset($r) ? $r : null;
 	}
 	
@@ -70,6 +76,8 @@ class QueryBuilder
 		while($result = $stmt->fetchArray(SQLITE3_ASSOC)):
 			$r[] = $result;
 		endwhile;
+
+		$db->close();
 
 		return isset($r) ? json_encode($r) : null;
 	}
@@ -91,10 +99,13 @@ class QueryBuilder
 			}
 			else
 			{
-				throw new Exception("QueryBuilder", 1);			
+				die('Doslo je do neocekivane greske');
 			}
 		endforeach;
-				return $result;
+
+		$db->close();
+
+		return $result;
 
 	}
 
@@ -109,12 +120,37 @@ class QueryBuilder
 			$stmt = $db->prepare("SELECT * FROM '$table' WHERE id=:id");			
 			
 			$result = $stmt->execute();
+
+			$db->close();
 			
 			return $result;
 		}
 		else
 		{
-			throw new Exception("QueryBuilder", 1);			
+			die('Doslo je do neocekivane greske');			
+		}
+	}
+
+	public function destroyImg($table, $filename)
+	{
+		$db = new SQLite3('../../../skloniste.db');
+
+
+		$query = "DELETE FROM '$table' WHERE filename='$filename'";
+
+		if ($db->exec($query))
+		{
+			$stmt = $db->prepare("SELECT * FROM '$table' WHERE id=:id");			
+			
+			$result = $stmt->execute();
+
+			$db->close();
+			
+			return $result;
+		}
+		else
+		{
+			die('Doslo je do neocekivane greske');			
 		}
 	}
 
@@ -141,6 +177,8 @@ class QueryBuilder
 			$r[] = $result;
 		arsort($r);
 		endwhile;
+
+		$db->close();
 		
 		return isset($r) ? $r : null;
   	}
@@ -151,11 +189,18 @@ class QueryBuilder
 
 		$stmt = $db->query('SELECT * FROM '.$table);
 
+		$outp = "[";
 		while($result = $stmt->fetchArray(SQLITE3_ASSOC)):
-			$r[] = $result;
+			if ($outp != "[") {$outp .= ",";}
+		    $outp .= '{"name":"'  . iconv('Windows-1250', 'UTF-8', utf8_decode($result["name"])) . '",';
+		    $outp .= '"surname":"'   . iconv('Windows-1250', 'UTF-8', utf8_decode($result["surname"])) . '",';
+		    $outp .= '"instrument":"'. iconv('Windows-1250', 'UTF-8', utf8_decode($result["instrument"]))  . '",'; 
+		    $outp .= '"bio":"'. iconv('Windows-1250', 'UTF-8', utf8_decode($result["bio"]))  . '"}'; 
 		endwhile;
+		$outp .="]";
 
-		return isset($r) ? json_encode($r) : null;
+
+		return isset($result) ? $outp : null;
 	}
 
 	public function indexGallery()
@@ -183,6 +228,8 @@ class QueryBuilder
 			$stmt = $db->prepare('SELECT title FROM galleries WHERE id=:id');	
 			
 			$result = $stmt->execute();
+
+			$db->close();
 			
 			return $result;
 		}
